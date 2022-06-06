@@ -4,6 +4,7 @@
     header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, X-Token-Auth, Authorization");
 
     require_once "config/db.php";
+    require_once "config/user.php";
 
     $email = '';
     $password = '';
@@ -15,17 +16,19 @@
     $email = $data->email;
     $password = $data->password;
 
-    $query = "SELECT password FROM users WHERE users.email = '$email'";
+    $query = "SELECT * FROM users WHERE users.email = '$email'";
     $result = $conn->query($query);
     if($result->num_rows === 0){
         http_response_code(200);
         echo json_encode('no');
     }
     else{
-        $row = $result->fetch_assoc();
-        if($row['password'] === $password){
-            http_response_code(200);
-            echo json_encode('yes');
+        while($row = $result->fetch_assoc()){
+            if($row['password'] == $password){
+                http_response_code(200);
+                $u = new user($row['username'], $row["password"], $email, '012289759');
+                echo json_encode($u);
+            }
         }
     }
 ?>
