@@ -18,7 +18,7 @@
     $username = $data->username;
     
     
-    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `isAdmin`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', NULL, NULL, '0', '0', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
+    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `type`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', NULL, NULL, '0', '0', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
 
     if(!$conn->query($query)){
         http_response_code(200);
