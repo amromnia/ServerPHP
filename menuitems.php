@@ -17,17 +17,17 @@
     $query = "SELECT * FROM `food`";
     $result = $conn->query($query);
 
-    $menuitems;
+    $items;
     $counter = 0;
 
     while($row = $result->fetch_assoc()){
-        $cur = new menuitem($row["id"], $row["name"],$row["Description"] ,$row["type"], $row["price"],$row["image"]);
-        $menuitems[$counter++] = $cur;
+        $cur = new menuitem($row["id"], $row["name"], $row['Description'],  $row["type"], $row["price"], $row["image"]);
+        $items[$counter++] = $cur;
         // http_response_code(200);
         // echo json_encode($cur);
     }
 
     http_response_code(200);
-    echo json_encode($menuitems);
+    echo json_encode($items);
     
 ?>

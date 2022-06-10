@@ -1,5 +1,5 @@
 <?php
-    class item{
+    class menuitem{
         public $id;
         public $name;
         public $description;
@@ -7,11 +7,11 @@
         public $price;
         public $image;
 
-        function __construct($id, $name,$description, $type, $price,$image){
+        function __construct($id, $name,$description, $type, $price, $image){
             $this->id = $id;
             $this->name = $name;
             $this->description = $description;
-            $this->type = $type
+            $this->type = $type;
             $this->price = $price;
             $this->image = $image;
 
