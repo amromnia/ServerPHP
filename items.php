@@ -21,7 +21,7 @@
     $counter = 0;
 
     while($row = $result->fetch_assoc()){
-        $cur = new item($row["id"], $row["name"], $row["type"], $row["price"]);
+        $cur = new item($row["id"], $row["name"], $row["type"], $row["price"], $row['description']);
         $items[$counter++] = $cur;
         // http_response_code(200);
         // echo json_encode($cur);
