@@ -27,8 +27,13 @@
         $orders[$counter++] = $cur;
     }
 
-    http_response_code(200);
-    echo json_encode($orders);
+    if($orders = NULL){
+        http_response_code(200);
+        echo json_encode("error");
+    } else {
+        http_response_code(200);
+        echo json_encode($orders);
+    }
 
     // http_response_code(200);
     // echo json_encode($items);
