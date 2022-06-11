@@ -11,9 +11,10 @@
 
     $data = json_decode(file_get_contents("php://input"));
     $id = $data->id;
+    $id = filter_var($id, FILTER_SANITIZE_STRING);
     //echo "$req";
 
-    $query = "UPDATE `food` SET `id` = '$data->id', `name` = '$data->name', `type` = '$data->type', `price` = '$data->price', `description` = '$data->description' WHERE `food`.`id` = $data->id; ";
+    $query = "DELETE FROM orders WHERE `orders`.`id` = $id";
     if($conn->query($query)){
         http_response_code(200);
         echo json_encode("successful");
@@ -22,7 +23,8 @@
         echo json_encode("error");
     }
 
+
     // http_response_code(200);
     // echo json_encode($id);
-    
+
 ?>
