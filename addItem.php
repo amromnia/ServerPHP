@@ -4,7 +4,7 @@
     header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, X-Token-Auth, Authorization");
 
     require_once "config/db.php";
-   
+
 
 
     $db = new DatabaseConnection();
@@ -12,11 +12,16 @@
 
     $data = json_decode(file_get_contents("php://input"));
     $req = $data;
-    
 
-    $query = "INSERT INTO `food` (`id`, `name`, `type`, `price`, `description`) VALUES (NULL, '$data->name', '$data->type', $data->price, '$data->description');";
+    //Sanitize Inputs
+    $name = filter_var($req->name, FILTER_SANITIZE_STRING);
+    $type = filter_var($req->type, FILTER_SANITIZE_STRING);
+    $price = filter_var($req->price, FILTER_SANITIZE_STRING);
+    $desc = filter_var($req->description, FILTER_SANITIZE_STRING);
+
+    $query = "INSERT INTO `food` (`id`, `name`, `type`, `price`, `description`) VALUES (NULL, '$name', '$type', $price, '$desc');";
     echo $query;
-    
+
     if($conn->query($query)){
         http_response_code(200);
         echo json_encode("successfuly added item");
@@ -25,10 +30,10 @@
         echo json_encode("error");
     }
 
-    
 
-   
 
-    
-    
+
+
+
+
 ?>

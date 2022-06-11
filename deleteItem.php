@@ -11,6 +11,7 @@
 
     $data = json_decode(file_get_contents("php://input"));
     $id = $data->id;
+    $id = filter_var($id, FILTER_SANITIZE_STRING);
     //echo "$req";
 
     $query = "DELETE FROM food WHERE `food`.`id` = $id";
@@ -25,5 +26,5 @@
 
     // http_response_code(200);
     // echo json_encode($id);
-    
+
 ?>

@@ -16,6 +16,14 @@
     $email = $data->email;
     $password = $data->password;
 
+    $email = filter_var($email, FILTER_SANITIZE_STRING);
+    $password = filter_var($password, FILTER_SANITIZE_STRING);
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        http_response_code(200);
+        echo json_encode('no');
+    }
+
     $query = "SELECT * FROM users WHERE users.email = '$email'";
     $result = $conn->query($query);
     if($result->num_rows === 0){
