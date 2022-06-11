@@ -10,8 +10,8 @@
     $db = new DatabaseConnection();
     $conn = $db->getConnection();
 
-    $data = json_decode(file_get_contents("php://input"));
-    $req = $data->req;
+    // $data = json_decode(file_get_contents("php://input")); //No need for request data since it only selects all food
+    // $req = $data->req;
     //echo "$req";
 
     $query = "SELECT * FROM `food`";
@@ -29,5 +29,5 @@
 
     http_response_code(200);
     echo json_encode($items);
-    
+
 ?>
