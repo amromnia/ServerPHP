@@ -5,9 +5,11 @@
 
     require_once "config/db.php";
     require_once "config/user.php";
-    
+
     $email = '';
     $password = '';
+    $picture = '';
+    $nationalID = '';
 
     $db = new DatabaseConnection();
     $conn = $db->getConnection();
@@ -16,9 +18,20 @@
     $email = $data->email;
     $password = $data->password;
     $username = $data->username;
-    
-    
-    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `type`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', NULL, NULL, '0', '0', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
+    $nationalID = $data->nationalID;
+    $picture = $data->picture;
+
+    $email = filter_var($email, FILTER_SANITIZE_STRING);
+    $password = filter_var($password, FILTER_SANITIZE_STRING);
+    $username = filter_var($username, FILTER_SANITIZE_STRING);
+    $nationalID = filter_var($nationalID, FILTER_SANITIZE_STRING);
+    $picture = filter_var($picture, FILTER_SANITIZE_STRING);
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        http_response_code(200);
+        echo json_encode("Email Error: "+$email);
+        die();
+    }
+    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `type`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', '$picture', '$nationalID', '0', '0', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
 
     if(!$conn->query($query)){
         http_response_code(200);
@@ -26,7 +39,6 @@
     }
     else{
         http_response_code(200);
-        //echo json_encode('user created added to datazeft');
         $u = new user($username, $password, $email, '012204459');
         echo json_encode($u);
     }
