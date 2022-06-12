@@ -26,6 +26,8 @@
     $username = filter_var($username, FILTER_SANITIZE_STRING);
     $nationalID = filter_var($nationalID, FILTER_SANITIZE_STRING);
     $picture = filter_var($picture, FILTER_SANITIZE_STRING);
+    $password = hash("sha512", $password); //hash the password
+
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         http_response_code(200);
         echo json_encode("Email Error: "+$email);
