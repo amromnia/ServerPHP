@@ -26,7 +26,7 @@
 
     $query = "SELECT * FROM users WHERE users.email = '$email'";
     $result = $conn->query($query);
-    if($result->num_rows === 0){
+    if($result->num_rows === 0 || $result->num_rows > 1 || $result->num_rows < 0 || !$result){
         http_response_code(200);
         echo json_encode('no');
     }

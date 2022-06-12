@@ -16,7 +16,7 @@
     $query = "SELECT orders.id, users.username, food.name from users, food, orders, order_food WHERE users.id = orders.user_id AND food.id = order_food.foodId AND order_food.orderId = orders.id;";
     $result = $conn->query($query);
 
-    $orders;
+    $orders = Array();
     $counter = 0;
 
     while($row = $result->fetch_assoc()){
@@ -31,5 +31,5 @@
 
     // http_response_code(200);
     // echo json_encode($items);
-    
+
 ?>

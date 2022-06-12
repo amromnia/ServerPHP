@@ -12,7 +12,11 @@
 
     $query = "SELECT * FROM `food`";
     $result = $conn->query($query);
-
+    if(!$result){
+        http_response_code(200);
+        echo json_encode("error");
+        die();
+    }
     $items;
     $counter = 0;
 
