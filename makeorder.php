@@ -16,7 +16,8 @@
     $result = $conn->query($query);
     if(!$result){
         http_response_code(200);
-        echo json_encode("error");
+        echo json_encode("errorikos");
+        echo json_encode($query);
         die();
     }
     $result = $conn->query($query2);
@@ -30,7 +31,9 @@
         $result = $conn->query($query);
         if(!$result){
             http_response_code(200);
-            echo json_encode("error");
+            echo json_encode("errorikos two.two");
+            echo json_encode($query);
+            echo json_encode($query2);
             die();
         }
     }
