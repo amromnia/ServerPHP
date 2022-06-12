@@ -4,7 +4,7 @@
     header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, X-Token-Auth, Authorization");
 
     require_once "config/db.php";
-    require_once "config/item.php";
+    require_once "config/user.php";
 
 
     $db = new DatabaseConnection();
@@ -13,11 +13,11 @@
     $query = "SELECT * FROM `food`";
     $result = $conn->query($query);
 
-    $items;
+    $users;
     $counter = 0;
 
     while($row = $result->fetch_assoc()){
-        $cur = new item($row["id"], $row["name"], $row["type"], $row["price"], "");
+        $cur = new user($row["id"], $row["username"], $row["type"], $row["price"], "");
         $items[$counter++] = $cur;
         // http_response_code(200);
         // echo json_encode($cur);
