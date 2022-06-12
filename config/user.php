@@ -1,5 +1,6 @@
 <?php
     class user{
+        public $id;
         public $username;
         public $password;
         public $email;
@@ -8,7 +9,8 @@
         public $picture;
         public $nationalID;
 
-        function __construct($user, $pass, $em, $ph, $type, $picture, $nationalID){
+        function __construct($id, $user, $pass, $em, $ph, $type, $picture, $nationalID){
+            $this->id = $id;
             $this->username = $user;
             $this->password = $pass;
             $this->email = $em;

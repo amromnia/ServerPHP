@@ -33,7 +33,7 @@
         echo json_encode("Email Error: "+$email);
         die();
     }
-    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `type`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', '$picture', '$nationalID', '0', '0', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
+    $query = "INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `email`, `picture`, `nationalID`, `isActive`, `type`, `createdAt`, `updatedAt`) VALUES (NULL, '$username', NULL, NULL, '$password', '$email', '$picture', '$nationalID', '0', 'client', '2022-06-06 15:56:13.000000', '2022-06-06 15:56:13.000000');";
 
     if(!$conn->query($query)){
         http_response_code(200);
@@ -41,7 +41,7 @@
     }
     else{
         http_response_code(200);
-        $u = new user($username, $password, $email, '012204459');
+        $u = new user($username, $password, $email, '012204459', "client",$picture, $nationalID);
         echo json_encode($u);
     }
 ?>
