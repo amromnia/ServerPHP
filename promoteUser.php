@@ -23,7 +23,7 @@
 
         }
     }
-
+    
 
     $query = "SELECT * FROM users ";
     $result = $conn->query($query);
