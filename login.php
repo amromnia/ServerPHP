@@ -35,7 +35,7 @@
             if($row['password'] == $password){
                 http_response_code(200);
                 //$user, $pass, $em, $ph, $type, $picture, $nationalID
-                $u = new user($row['username'], $row["password"], $row["email"], "0129123813", $row["type"], $row["picture"], $row["nationalID"]);
+                $u = new user($row['id'], $row['username'], $row["password"], $row["email"], "0129123813", $row["type"], $row["picture"], $row["nationalID"]);
                 echo json_encode($u);
             }
         }
